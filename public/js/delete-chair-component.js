@@ -1,4 +1,4 @@
-AFRAME.registerComponent('delete-item-component', {
+AFRAME.registerComponent('delete-chair-component', {
     schema: {},
     init : function() {
         const Context_AF = this;

@@ -1,4 +1,4 @@
-AFRAME.registerComponent('create-item-component', {
+AFRAME.registerComponent('create-chair-component', {
 
     init: function()
     {
@@ -35,11 +35,11 @@ AFRAME.registerComponent('create-item-component', {
         itemChair.setAttribute('class', 'clickable');
         itemChair.setAttribute('obj-model', 'obj:assets/models/Chair_3.obj');
         itemChair.setAttribute('material', 'src:assets/textures/Metal.jpg');
-        itemChair.setAttribute('delete-item-component', '');
+        itemChair.setAttribute('delete-chair-component', '');
 
         //random transfroms
         itemChair.setAttribute('position', {x:(Math.random() * 6.0) -3.0, y:0, z: -4.0 -(Math.random() *3.0)});
-        const randScale = 0.2 + (Math.random() * 0.8);
+        const randScale = 0.2 + (Math.random() * 0.4);
         itemChair.setAttribute('scale', {x:randScale, y:randScale, z:randScale});
         itemChair.setAttribute('rotation',{x:0, y:Math.random() * 360.0, z:0});
        
