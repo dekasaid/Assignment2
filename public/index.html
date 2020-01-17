@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>Multi-Platform Interactions</title>
+        <meta name="description" content="Multi-Platform Interactions">
+        <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+        <script src= "js/create-item-component.js"></script>
+        <script src= "js/delete-item-component.js"></script>
+
+      
+        <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+    </head>
+    <body>
+       
+        <a-scene>
+           <a-entity camera look-controls wasd-controls position="0 1.2 2">
+                <a-entity cursor="rayOrigin:mouse;"
+                            raycaster="far:20; interval:100; objects:.clickable">
+                </a-entity>
+           </a-entity>
+
+            <a-entity id="button" 
+                      class="clickable"
+                      position = "0 0 0"
+                      geometry="primitive: cylinder; radius: 0.5; height:0.1;"
+                      material="color:rgb(51, 153, 255);"
+                      create-item-component></a-entity>
+
+            <a-entity id="delete_button" 
+                      class="clickable"
+                      position = "1.5 0 0"
+                      geometry="primitive: cylinder; radius: 0.5; height:0.1;"
+                      material="color:rgb(255, 153, 255);"
+                      ></a-entity>
+            <!--enviroment-->
+            <a-entity environment="preset: japan; dressingAmount: 500"></a-entity>
+            
+        </a-scene>
+    </body>
+
+
+
+
+
+
+
+
+
+</html>

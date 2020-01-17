@@ -1,0 +1,22 @@
+{
+  "name": "assignment2",
+  "version": "1.0.0",
+  "description": "Multi-Platform Interactions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dekasaid/Assignment2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dekasaid/Assignment2/issues"
+  },
+  "homepage": "https://github.com/dekasaid/Assignment2#readme",
+  "dependencies": {
+    "epress": "0.0.1-security"
+  }
+}
