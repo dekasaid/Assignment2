@@ -3,8 +3,8 @@
         <title>Multi-Platform Interactions</title>
         <meta name="description" content="Multi-Platform Interactions">
         <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
-        <script src= "js/create-chair-component.js"></script>
-        <script src= "js/delete-chair-component.js"></script>
+        <script src= "js/create-tree-component.js"></script>
+        <script src= "js/delete-tree-component.js"></script>
         <script src= "js/cursor-component.js"></script>
 
       
@@ -13,9 +13,15 @@
     <body>
        
         <a-scene>
+
+
+            <a-assets> 
+                <img crossorigin="anonymous" id="treemap" src="/assets/textures/tree1.png">
+                <a-asset-item crossorigin="anonymous" id="Headphones-gltf" src="/assets/models/headphone_1.gltf"></a-asset-item>
+            </a-assets>
           
             <!--Have the cursor parented to the camera-->
-            <a-entity camera look-controls wasd-controls position="0 1.6 0">
+            <a-entity camera look-controls="pointerLockEnabled: true" wasd-controls position="0 1.6 0">
                 <a-entity cursor="fuse: true; fuseTimeout: 500"
                           position="0 0 -1"
                           geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
@@ -24,20 +30,30 @@
                 </a-entity>
               </a-entity>
               
+
+
+              <a-entity id="asteroid_plane" position="-0.2 2.6 5" rotation="-30 90 0" scale="1 1 1"
+                  geometry="primitive:plane; width:1.5; height:1.0;"
+                  material="src:#asteroid_img"></a-entity>
+
+                  <a-gltf-model src="#Headphones-gltf" position="0.4 2 -9" rotation= "0 90 0 " scale="0.4 0.4 0.4" shadow="cast:true; receive:true;"></a-gltf-model>
+
+
+
               <a-entity id="box" 
                         cursor-listener 
+                        position = "-1.2 0 -7"
                         geometry="primitive: box"
-                         material="color: blue"
-                         cursor-component></a-entity>
+                        material="color: gold"
+                        cursor-component></a-entity>
 
-           
-           
+          
            <a-entity id="button" 
                       class="clickable"
-                      position = "1.5 0 0"
+                      position = "1.2 0 -7"
                       geometry="primitive: cylinder; radius: 0.5; height:0.1;"
-                      material="color:rgb(51, 153, 255);"
-                      create-chair-component></a-entity>
+                      shadow="receive:true;" material="color:#7BC8A4; sphericalEnvMap:#skymap; roughness:0.9; metalness:0.2;"
+                      create-tree-component></a-entity>
             
             <!--enviroment-->
             <a-entity environment="preset: forest; dressingAmount: 500"></a-entity>
