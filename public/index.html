@@ -5,6 +5,7 @@
         <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
         <script src= "js/create-chair-component.js"></script>
         <script src= "js/delete-chair-component.js"></script>
+        <script src= "js/cursor-component.js"></script>
 
       
         <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
@@ -12,41 +13,35 @@
     <body>
        
         <a-scene>
-           <a-entity camera look-controls wasd-controls position="0 1.2 2">
-                <a-entity cursor="rayOrigin:mouse;"
-                            raycaster="far:20; interval:100; objects:.clickable">
+          
+            <!--Have the cursor parented to the camera-->
+            <a-entity camera look-controls wasd-controls position="0 1.6 0">
+                <a-entity cursor="fuse: true; fuseTimeout: 500"
+                          position="0 0 -1"
+                          geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                          material="color: white; shader: flat">
+                          
                 </a-entity>
-           </a-entity>
-           <a-box src="https://i.etsystatic.com/12590754/r/il/5c05b7/1522525266/il_fullxfull.1522525266_8s7g.jpg" 
-                    position="0 2 -5" 
-                    rotation ="-90 0 0"
-                    scale= "2 2 2"></a-box>
+              </a-entity>
+              
+              <a-entity id="box" 
+                        cursor-listener 
+                        geometry="primitive: box"
+                         material="color: blue"
+                         cursor-component></a-entity>
+
+           
            
            <a-entity id="button" 
                       class="clickable"
-                      position = "0 0 0"
+                      position = "1.5 0 0"
                       geometry="primitive: cylinder; radius: 0.5; height:0.1;"
                       material="color:rgb(51, 153, 255);"
                       create-chair-component></a-entity>
-
-            <a-entity id="delete_button" 
-                      class="clickable"
-                      position = "1.5 0 0"
-                      geometry="primitive: cylinder; radius: 0.5; height:0.1;"
-                      material="color:rgb(255, 153, 255);"
-                      ></a-entity>
-            <!--enviroment-->
-            <a-entity environment="preset: tron; dressingAmount: 500"></a-entity>
             
+            <!--enviroment-->
+            <a-entity environment="preset: forest; dressingAmount: 500"></a-entity>
+ 
         </a-scene>
     </body>
-
-
-
-
-
-
-
-
-
 </html>

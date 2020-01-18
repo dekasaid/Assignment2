@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/dekasaid/Assignment2#readme",
   "dependencies": {
-    "epress": "0.0.1-security"
+    "epress": "0.0.1-security",
+    "express": "^4.17.1"
   }
 }
