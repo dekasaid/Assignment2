@@ -1,3 +1,4 @@
+
 AFRAME.registerComponent('create-tree-component', {
 
     init: function()

@@ -7,7 +7,7 @@
         <script src= "js/delete-tree-component.js"></script>
         <script src= "js/cursor-component.js"></script>
 
-      
+        <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
         <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
     </head>
     <body>
@@ -42,19 +42,34 @@
 
               <a-entity id="box" 
                         cursor-listener 
-                        position = "-1.2 0 -7"
+                        position = "-1.2 1.1 -7"
                         geometry="primitive: box"
                         material="color: gold"
-                        cursor-component></a-entity>
+                        event-set__enter="_event: mouseenter; _target: #boxText; visible: true"
+                        event-set__leave="_event: mouseleave; _target: #boxText; visible: false"
+                        cursor-component>
+                    
+                        <a-text id="boxText" value="This is a box" color="white" visible="false" position="-0.49 0.76 1"></a-text></a-entity>
 
           
-           <a-entity id="button" 
+                <a-entity id="button" 
                       class="clickable"
-                      position = "1.2 0 -7"
+                      position = "7.5 0 -10"
                       geometry="primitive: cylinder; radius: 0.5; height:0.1;"
                       shadow="receive:true;" material="color:#7BC8A4; sphericalEnvMap:#skymap; roughness:0.9; metalness:0.2;"
-                      create-tree-component></a-entity>
+                      
+
+
+                      
+                      create-tree-component ></a-entity>
             
+                <a-entity id="sign" 
+                      position = "7.5 1.4 -10"
+                      rotation = "-180 90 0"
+                      scale = "0.5 0.5 0.5"
+                      geometry="primitive: triangle"
+                      material="side: double; color: yellow;"
+                      animation="property: position; from: 7.5 1.4 -10; to: 7.5 2.1 -10; dir: alternate; loop: true; dur: 2000; ease: linear"></a-entity>
             <!--enviroment-->
             <a-entity environment="preset: forest; dressingAmount: 500"></a-entity>
  

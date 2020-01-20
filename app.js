@@ -1,6 +1,6 @@
-const express = require("express");
+const express        = require("express");
 const app            = express();
-const http           =require("http");
+const http           = require("http");
 const server         = http.createServer(app);
 
 const PORT           = 1111;       //default 80; but we want to use to avoid conflict 
