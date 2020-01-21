@@ -14,11 +14,12 @@
        
         <a-scene>
 
-          <!--loading some assets-->
+
             <a-assets> 
                 <img crossorigin="anonymous" id="treemap" src="/assets/textures/tree1.png">
+
                 <a-asset-item crossorigin="anonymous" id="Headphones-gltf" src="/assets/models/headphone_1.gltf"></a-asset-item>
-                <a-asset-item crossorigin="anonymous" id="Trashcan-gltf" src="/assets/models/trash-can.gltf" ></a-asset-item>
+                <a-asset-item crossorigin="anonymous" id="Ball-gltf" src="/assets/models/ball.gltf"></a-asset-item>
             </a-assets>
           
             <!--Have the cursor parented to the camera-->
@@ -37,8 +38,9 @@
                   geometry="primitive:plane; width:1.5; height:1.0;"
                   material="src:#asteroid_img"></a-entity>
 
-              <a-gltf-model src="#Headphones-gltf" position="0.4 2 -9" rotation= "0 90 0 " scale="0.4 0.4 0.4" shadow="cast:true; receive:true;"></a-gltf-model>
-              <a-gltf-model src="#Trashcan-gltf" position="0.4 2 -9"  scale="0.4 0.4 0.4" shadow="cast:true; receive:true;"></a-gltf-model>
+                  <a-gltf-model src="#Headphones-gltf" position="0.4 2 -9" rotation= "0 90 0 " scale="0.4 0.4 0.4" shadow="cast:true; receive:true;"></a-gltf-model>
+                  <a-gltf-model src="#Ball-gltf" position="0 3 -11" rotation= "90 0 0 " scale="1 1 1" shadow="cast:true; receive:true;"></a-gltf-model>
+
 
 
               <a-entity id="box" 
