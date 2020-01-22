@@ -11,7 +11,7 @@ AFRAME.registerComponent('create-tree-component', {
         Context_AF.el.addEventListener('click', function(event)
         {
             console.log('click');
-            Context_AF.createItem();       //when you click on the button, a tree appears
+            Context_AF.createItem();       //when you hover on the button, a tree appears
            
         });
 
@@ -39,7 +39,7 @@ AFRAME.registerComponent('create-tree-component', {
         itemTree.setAttribute('class', 'clickable');
         itemTree.setAttribute('obj-model', 'obj:assets/models/tree-1-fixed-3.obj');
         itemTree.setAttribute('material', 'src:assets/textures/tree1.png');
-        //itemTree.setAttribute('delete-tree-component', {});
+        itemTree.setAttribute('delete-item-component', {});
 
         //random transfromations
         itemTree.setAttribute('position', {x:(Math.random() * 4.0) -3.0, y:0, z: -4.0 -(Math.random() *3.0)});

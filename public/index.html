@@ -6,7 +6,7 @@
        
         <!--js components-->
         <script src= "js/create-tree-component.js"></script>
-        <script src= "js/delete-tree-component.js"></script>
+        <script src= "js/delete-item-component.js"></script>
         <script src= "js/cursor-component.js"></script>
 
         <!--some component scripts that run with the enviroment (one is for the a-frame enviroment and the other is events based on the hovering of the mouse)-->
@@ -50,8 +50,8 @@
                         obj-model="obj: #flower-obj; mtl:#flower-mtl"
                         scale = "0.015 0.015 0.015"
                         event-set__enter="_event: mouseenter; _target: #flowerText; visible: true"
-                        event-set__leave="_event: mouseleave; _target: #flowerText; visible: false">
-                    
+                        event-set__leave="_event: mouseleave; _target: #flowerText; visible: false"
+                        >
                         <a-text id="flowerText" value="This is a flower" color="white" visible="false" scale= "35 35 35" position="-32 59 2.8"></a-text></a-entity>
 
 
@@ -74,6 +74,13 @@
                       geometry="primitive: cylinder; radius: 0.5; height:0.1;"
                       shadow="receive:true;" material="color:#7BC8A4; sphericalEnvMap:#skymap; roughness:0.9; metalness:0.2;"
                       create-tree-component ></a-entity>
+
+                      <a-entity id="button" 
+                      class="clickable"
+                      position = "7.5 0 -14"
+                      geometry="primitive: cylinder; radius: 0.5; height:0.1;"
+                      shadow="receive:true;" material="color:red; sphericalEnvMap:#skymap; roughness:0.9; metalness:0.2;"
+                      ></a-entity>
             
                 <!-- have a sign displayed to remind user to hover here to create trees-->
                 <a-entity id="sign" 
