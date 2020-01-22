@@ -3,10 +3,13 @@
         <title>Multi-Platform Interactions</title>
         <meta name="description" content="Multi-Platform Interactions">
         <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+       
+        <!--js components-->
         <script src= "js/create-tree-component.js"></script>
         <script src= "js/delete-tree-component.js"></script>
         <script src= "js/cursor-component.js"></script>
 
+        <!--some component scripts that run with the enviroment (one is for the a-frame enviroment and the other is events based on the hovering of the mouse)-->
         <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
         <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
     </head>
@@ -14,15 +17,16 @@
        
         <a-scene>
 
-
+            <!--assets-->
             <a-assets> 
                 <img crossorigin="anonymous" id="treemap" src="/assets/textures/tree1.png">
 
                 <a-asset-item crossorigin="anonymous" id="Headphones-gltf" src="/assets/models/headphone_1.gltf"></a-asset-item>
-                <a-asset-item crossorigin="anonymous" id="Ball-gltf" src="/assets/models/ball.gltf"></a-asset-item>
+                <a-asset-item crossorigin="anonymous" id="flower-obj" src="/assets/models/flower.obj"></a-asset-item>
+                <a-asset-item crossorigin="anonymous" id="flower-mtl" src="/assets/models/flower.mtl"></a-asset-item>
             </a-assets>
           
-            <!--Have the cursor parented to the camera-->
+            <!--Have the cursor parented to the camera by having pointer lock enabled so whenever the mouse is moving, the cursor is located at the center of the screen (exit by pressing the esc key)-->
             <a-entity camera look-controls="pointerLockEnabled: true" wasd-controls position="0 1.6 0">
                 <a-entity cursor="fuse: true; fuseTimeout: 500"
                           position="0 0 -1"
@@ -32,15 +36,23 @@
                 </a-entity>
               </a-entity>
               
-
-
-              <a-entity id="asteroid_plane" position="-0.2 2.6 5" rotation="-30 90 0" scale="1 1 1"
-                  geometry="primitive:plane; width:1.5; height:1.0;"
-                  material="src:#asteroid_img"></a-entity>
-
+              <!--gltf models-->
                   <a-gltf-model src="#Headphones-gltf" position="0.4 2 -9" rotation= "0 90 0 " scale="0.4 0.4 0.4" shadow="cast:true; receive:true;"></a-gltf-model>
                   <a-gltf-model src="#Ball-gltf" position="0 3 -11" rotation= "90 0 0 " scale="1 1 1" shadow="cast:true; receive:true;"></a-gltf-model>
+                  
 
+              <!--some entities-->
+
+                <!--Have the cursor hover over the flower to display text-->
+                <a-entity id="flower" 
+                        cursor-listener 
+                        position = "4 0.1 -4"
+                        obj-model="obj: #flower-obj; mtl:#flower-mtl"
+                        scale = "0.015 0.015 0.015"
+                        event-set__enter="_event: mouseenter; _target: #flowerText; visible: true"
+                        event-set__leave="_event: mouseleave; _target: #flowerText; visible: false">
+                    
+                        <a-text id="flowerText" value="This is a flower" color="white" visible="false" scale= "35 35 35" position="-32 59 2.8"></a-text></a-entity>
 
 
               <a-entity id="box" 
@@ -50,6 +62,7 @@
                         material="color: gold"
                         event-set__enter="_event: mouseenter; _target: #boxText; visible: true"
                         event-set__leave="_event: mouseleave; _target: #boxText; visible: false"
+                       
                         cursor-component>
                     
                         <a-text id="boxText" value="This is a box" color="white" visible="false" position="-0.49 0.76 1"></a-text></a-entity>
@@ -60,12 +73,9 @@
                       position = "7.5 0 -10"
                       geometry="primitive: cylinder; radius: 0.5; height:0.1;"
                       shadow="receive:true;" material="color:#7BC8A4; sphericalEnvMap:#skymap; roughness:0.9; metalness:0.2;"
-                      
-
-
-                      
                       create-tree-component ></a-entity>
             
+                <!-- have a sign displayed to remind user to hover here to create trees-->
                 <a-entity id="sign" 
                       position = "7.5 1.4 -10"
                       rotation = "-180 90 0"
@@ -73,6 +83,7 @@
                       geometry="primitive: triangle"
                       material="side: double; color: yellow;"
                       animation="property: position; from: 7.5 1.4 -10; to: 7.5 2.1 -10; dir: alternate; loop: true; dur: 2000; ease: linear"></a-entity>
+           
             <!--enviroment-->
             <a-entity environment="preset: forest; dressingAmount: 500"></a-entity>
  
