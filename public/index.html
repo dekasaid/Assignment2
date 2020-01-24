@@ -12,6 +12,7 @@
         <!--some component scripts that run with the enviroment (one is for the a-frame enviroment and the other is events based on the hovering of the mouse)-->
         <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
         <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+        <script src="https://rawgit.com/Ctrl-Alt-Zen/aframe-mobile-controls/master/components/twoway-motion/twoway-motion.js"></script>
     </head>
     <body>
        
@@ -28,7 +29,7 @@
             </a-assets>
           
             <!--Have the cursor parented to the camera by having pointer lock enabled so whenever the mouse is moving, the cursor is located at the center of the screen (exit by pressing the esc key)-->
-            <a-entity camera look-controls="pointerLockEnabled: true" wasd-controls position="0 1.6 0">
+            <a-entity twoway-motion="speed: 35" camera look-controls="pointerLockEnabled: true" wasd-controls position="0 1.6 0">
                 <a-entity cursor="fuse: true; fuseTimeout: 500"
                           position="0 0 -1"
                           geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
