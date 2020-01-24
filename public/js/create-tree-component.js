@@ -19,7 +19,10 @@ AFRAME.registerComponent('create-tree-component', {
         {
             //el = html entity or element 
             //object3D = three.js(rendering engine) 3D element
+          
+            
            Context_AF.el.object3D.scale.set(1.1, 1.1, 1.1);
+           //Context_AF.el.object3D.rotate.set();
         });
 
         Context_AF.el.addEventListener('mouseleave', function(event)

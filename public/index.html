@@ -1,5 +1,7 @@
 <html>
     <head>
+        <!--https://plnkr.co/edit/k9Jc5qEG0ckEovquEZi4?p=preview-->
+
         <title>Multi-Platform Interactions</title>
         <meta name="description" content="Multi-Platform Interactions">
         <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
@@ -8,6 +10,7 @@
         <script src= "js/create-tree-component.js"></script>
         <script src= "js/delete-item-component.js"></script>
         <script src= "js/cursor-component.js"></script>
+        <script src= "js/item-selection-component.js"></script>
 
         <!--some component scripts that run with the enviroment (one is for the a-frame enviroment and the other is events based on the hovering of the mouse)-->
         <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
@@ -25,7 +28,9 @@
                 <a-asset-item crossorigin="anonymous" id="headphone-gltf" src="/assets/models/headphone_1.gltf"></a-asset-item>
                 <a-asset-item crossorigin="anonymous" id="flower-obj" src="/assets/models/flower.obj"></a-asset-item>
                 <a-asset-item crossorigin="anonymous" id="flower-mtl" src="/assets/models/flower.mtl"></a-asset-item>
-        
+                <a-asset-item crossorigin="anonymous" id="daisy-obj" src="/assets/models/flowers 3d OBJ.obj"></a-asset-item>
+                <a-asset-item crossorigin="anonymous" id="daisy-mtl" src="/assets/models/flowers 3d OBJ.mtl"></a-asset-item>
+                <a-asset-item crossorgin="anonymous" id="bench-obj" src="/assets/models/Bench OBJ.obj"></a-asset-item>
             </a-assets>
           
             <!--Have the cursor parented to the camera by having pointer lock enabled so whenever the mouse is moving, the cursor is located at the center of the screen (exit by pressing the esc key)-->
@@ -49,9 +54,36 @@
                         obj-model="obj: #flower-obj; mtl:#flower-mtl"
                         scale = "0.015 0.015 0.015"
                         event-set__enter="_event: mouseenter; _target: #flowerText; visible: true"
-                        event-set__leave="_event: mouseleave; _target: #flowerText; visible: false"
-                        >
+                        event-set__leave="_event: mouseleave; _target: #flowerText; visible: false">
                         <a-text id="flowerText" value="This is a flower" color="white" visible="false" scale= "35 35 35" position="-32 59 2.8"></a-text></a-entity>
+
+                <a-entity id="daisy"
+                        crusor-listener
+                        position = "-2.1 0 -6.3"
+                        obj-model="obj: #daisy-obj; mtl:#daisy-mtl"
+                        scale= "0.015 0.015 0.015"
+                        event-set__enter="_event: mouseenter; _target: #daisyText; visible: true"
+                        event-set__leave="_event: mouseleave; _target: #daisyText; visible: false"
+                       
+                        event-set__2="_event: mouseenter"
+                        event-set__3="_event: mouseleave"
+
+                        animation__rotate="property: rotation; dir: forward ; dur: 10000; easing: easeInSine; loop: true; to: 0 360 0; startEvents: click"
+
+                       >
+                        <a-text id="daisyText" value="These are daisies" color="white" visible="false" scale= "35 35 35" position="-21 32 27"></a-text></a-entity>
+                
+                <a-entity id= "bench"
+                        crusor-listener
+                        position = "2.5 0 -11"
+                        obj-model ="obj: #bench-obj"
+                        rotation = "0 -21 0"
+                        scale ="1.5 1.5 1.5"
+                        cursor-component>
+                        
+
+                </a-entity>
+
 
               <a-entity id="headphone"
                         cursor-listener 
@@ -97,9 +129,10 @@
                       scale = "0.5 0.5 0.5"
                       geometry="primitive: triangle"
                       material="side: double; color: yellow;"
-                      animation="property: position; from: 7.5 1.4 -10; to: 7.5 2.1 -10; dir: alternate; loop: true; dur: 2000; ease: linear"></a-entity>
-           
-            <!--enviroment-->
+                      animation="property: position; from: 7.5 1.4 -10; to: 7.5 2.1 -10; dir: alternate; loop: true; dur: 2000; ease: linear">
+                      <a-text id="treeText" value="Plant a tree!" rotation = "0 0 180" color="white" scale= "3 3 3 " position="1.8 -1.2 0"></a-text></a-entity>
+                      
+            <!--environment-->
             <a-entity environment="preset: forest; dressingAmount: 500"></a-entity>
  
         </a-scene>
