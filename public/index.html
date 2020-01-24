@@ -16,6 +16,9 @@
         <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
         <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
         <script src="https://rawgit.com/Ctrl-Alt-Zen/aframe-mobile-controls/master/components/twoway-motion/twoway-motion.js"></script>
+   
+        <!--physics-->
+        <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.13.1/dist/aframe-extras.min.js"></script>
     </head>
     <body>
        
@@ -31,6 +34,11 @@
                 <a-asset-item crossorigin="anonymous" id="daisy-obj" src="/assets/models/flowers 3d OBJ.obj"></a-asset-item>
                 <a-asset-item crossorigin="anonymous" id="daisy-mtl" src="/assets/models/flowers 3d OBJ.mtl"></a-asset-item>
                 <a-asset-item crossorgin="anonymous" id="bench-obj" src="/assets/models/Bench OBJ.obj"></a-asset-item>
+                <a-asset-item crossorgin="anonymous" id="butterfly-obj" src="/assets/models/butterfly_yellow.obj"></a-asset-item>
+                <a-asset-item crossorgin="anonymous" id="wasp-obj" src="/assets/models/Wasp.obj"></a-asset-item>
+                <a-asset-item crossorgin="anonymous" id="wasp-mtl" src="/assets/models/Wasp.mtl"></a-asset-item>
+  
+                <img id="wasp_img" src="/assets/models/textures/Wasp Body Texture.png" crossorigin="anonymous"> 
             </a-assets>
           
             <!--Have the cursor parented to the camera by having pointer lock enabled so whenever the mouse is moving, the cursor is located at the center of the screen (exit by pressing the esc key)-->
@@ -38,9 +46,12 @@
                 <a-entity cursor="fuse: true; fuseTimeout: 500"
                           position="0 0 -1"
                           geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-                          material="color: white; shader: flat">
-                          
+                          material="color: white; shader: flat"
+                          static-body>
+                        
                 </a-entity>
+               
+                
               </a-entity>
               
               
@@ -54,7 +65,9 @@
                         obj-model="obj: #flower-obj; mtl:#flower-mtl"
                         scale = "0.015 0.015 0.015"
                         event-set__enter="_event: mouseenter; _target: #flowerText; visible: true"
-                        event-set__leave="_event: mouseleave; _target: #flowerText; visible: false">
+                        event-set__leave="_event: mouseleave; _target: #flowerText; visible: false"
+                        
+                        animation__rotate="property: rotation; dir: forward; dur: 10000; easing: easeInSine; loop: true; to: 0 360 0; startEvents: click">  
                         <a-text id="flowerText" value="This is a flower" color="white" visible="false" scale= "35 35 35" position="-32 59 2.8"></a-text></a-entity>
 
                 <a-entity id="daisy"
@@ -62,29 +75,40 @@
                         position = "-2.1 0 -6.3"
                         obj-model="obj: #daisy-obj; mtl:#daisy-mtl"
                         scale= "0.015 0.015 0.015"
+                        shadow="cast: true"
                         event-set__enter="_event: mouseenter; _target: #daisyText; visible: true"
                         event-set__leave="_event: mouseleave; _target: #daisyText; visible: false"
-                       
-                        event-set__2="_event: mouseenter"
-                        event-set__3="_event: mouseleave"
-
-                        animation__rotate="property: rotation; dir: forward ; dur: 10000; easing: easeInSine; loop: true; to: 0 360 0; startEvents: click"
-
-                       >
+                        item-selection-component
+                        >
                         <a-text id="daisyText" value="These are daisies" color="white" visible="false" scale= "35 35 35" position="-21 32 27"></a-text></a-entity>
                 
+                <a-entity id="wasp"
+                          crusor-listener
+                          position= "-4.2 1.8 -4.2"
+                          rotation= "0 -90 0"
+                          obj-model="obj:#wasp-obj; myl:#wasp-mtl"
+                          scale= "0.010 0.010 0.010"
+                          material= "color: yellow" 
+                          animation="property: position; from: -4.2 1.8 -4.2; to: 7.5 0,8 -4; dir: alternate; loop: true; dur: 20000; ease: linear"
+                          animation__2="property: position; "></a-entity>
+                         
+            
                 <a-entity id= "bench"
                         crusor-listener
                         position = "2.5 0 -11"
                         obj-model ="obj: #bench-obj"
                         rotation = "0 -21 0"
                         scale ="1.5 1.5 1.5"
-                        cursor-component>
-                        
+                        cursor-component></a-entity>
 
-                </a-entity>
-
-
+                <a-entity id= "butterfly"
+                        crusor-listener
+                        position = "2.5 0 -11"
+                        obj-model ="obj: #butterfly-obj"
+                        rotation = "0 -21 4"
+                        scale ="0.015 0.015 0.015"
+                        cursor-component></a-entity>
+                
               <a-entity id="headphone"
                         cursor-listener 
                         position="0.4 2 -9"
@@ -92,8 +116,9 @@
                         rotation= "0 90 0 "
                         scale= "0.4 0.4 0.4"
                         shadow="cast:true; receive:true;"
-                        sound= "src: /assets/sounds/birdchirping.mp3; on: click; loop: true;"
-              ></a-entity>
+                        sound= "src: /assets/sounds/birdchirping.mp3; on: click; loop: true;"></a-entity>
+
+
               <a-entity id="box" 
                         cursor-listener 
                         position = "-1.2 1.1 -7"
@@ -107,7 +132,7 @@
                         <a-text id="boxText" value="This is a box" color="white" visible="false" position="-0.49 0.76 1"></a-text></a-entity>
 
           
-                      <a-entity id="button" 
+            <a-entity id="button" 
                       class="clickable"
                       position = "7.5 0 -10"
                       geometry="primitive: cylinder; radius: 0.5; height:0.1;"
@@ -115,7 +140,7 @@
                       sound= "src: /assets/sounds/button_pressed.mp3; on: click"
                       create-tree-component ></a-entity>
 
-                      <a-entity id="red_button" 
+           <a-entity id="red_button" 
                       class="clickable"
                       position = "7.5 0 -14"
                       geometry="primitive: cylinder; radius: 0.5; height:0.1;"
@@ -123,7 +148,7 @@
                       ></a-entity>
             
                 <!-- have a sign displayed to remind user to hover here to create trees-->
-                <a-entity id="sign" 
+            <a-entity id="sign" 
                       position = "7.5 1.4 -10"
                       rotation = "-180 90 0"
                       scale = "0.5 0.5 0.5"
@@ -131,9 +156,20 @@
                       material="side: double; color: yellow;"
                       animation="property: position; from: 7.5 1.4 -10; to: 7.5 2.1 -10; dir: alternate; loop: true; dur: 2000; ease: linear">
                       <a-text id="treeText" value="Plant a tree!" rotation = "0 0 180" color="white" scale= "3 3 3 " position="1.8 -1.2 0"></a-text></a-entity>
-                      
+            
+           <a-entity id='ball'
+                      position="0 1 -4"
+                      material="color:green;"
+                      geometry="primitive:sphere; radius: 0.5;"
+                      scale ="0.5 0.5 0.5"
+                      dynamic-body
+            ></a-entity>
+            
+            <a-plane color='green'
+                     static-body
+                     rotation="-90 0 0" width="100" height="100"></a-plane>   
             <!--environment-->
-            <a-entity environment="preset: forest; dressingAmount: 500"></a-entity>
+            <a-entity environment="preset: forest; dressingAmount: 900"></a-entity>
  
         </a-scene>
     </body>
