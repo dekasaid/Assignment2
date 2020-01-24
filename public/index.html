@@ -21,9 +21,10 @@
             <a-assets> 
                 <img crossorigin="anonymous" id="treemap" src="/assets/textures/tree1.png">
 
-                <a-asset-item crossorigin="anonymous" id="Headphones-gltf" src="/assets/models/headphone_1.gltf"></a-asset-item>
+                <a-asset-item crossorigin="anonymous" id="headphone-gltf" src="/assets/models/headphone_1.gltf"></a-asset-item>
                 <a-asset-item crossorigin="anonymous" id="flower-obj" src="/assets/models/flower.obj"></a-asset-item>
                 <a-asset-item crossorigin="anonymous" id="flower-mtl" src="/assets/models/flower.mtl"></a-asset-item>
+        
             </a-assets>
           
             <!--Have the cursor parented to the camera by having pointer lock enabled so whenever the mouse is moving, the cursor is located at the center of the screen (exit by pressing the esc key)-->
@@ -36,11 +37,8 @@
                 </a-entity>
               </a-entity>
               
-              <!--gltf models-->
-                  <a-gltf-model src="#Headphones-gltf" position="0.4 2 -9" rotation= "0 90 0 " scale="0.4 0.4 0.4" shadow="cast:true; receive:true;"></a-gltf-model>
-                  <a-gltf-model src="#Ball-gltf" position="0 3 -11" rotation= "90 0 0 " scale="1 1 1" shadow="cast:true; receive:true;"></a-gltf-model>
-                  
-
+              
+              
               <!--some entities-->
 
                 <!--Have the cursor hover over the flower to display text-->
@@ -54,7 +52,15 @@
                         >
                         <a-text id="flowerText" value="This is a flower" color="white" visible="false" scale= "35 35 35" position="-32 59 2.8"></a-text></a-entity>
 
-
+              <a-entity id="headphone"
+                        cursor-listener 
+                        position="0.4 2 -9"
+                        gltf-model="#headphone-gltf"
+                        rotation= "0 90 0 "
+                        scale= "0.4 0.4 0.4"
+                        shadow="cast:true; receive:true;"
+                        sound= "src: /assets/sounds/birdchirping.mp3; on: click; loop: true;"
+              ></a-entity>
               <a-entity id="box" 
                         cursor-listener 
                         position = "-1.2 1.1 -7"
@@ -68,14 +74,15 @@
                         <a-text id="boxText" value="This is a box" color="white" visible="false" position="-0.49 0.76 1"></a-text></a-entity>
 
           
-                <a-entity id="button" 
+                      <a-entity id="button" 
                       class="clickable"
                       position = "7.5 0 -10"
                       geometry="primitive: cylinder; radius: 0.5; height:0.1;"
                       shadow="receive:true;" material="color:#7BC8A4; sphericalEnvMap:#skymap; roughness:0.9; metalness:0.2;"
+                      sound= "src: /assets/sounds/button_pressed.mp3; on: click"
                       create-tree-component ></a-entity>
 
-                      <a-entity id="button" 
+                      <a-entity id="red_button" 
                       class="clickable"
                       position = "7.5 0 -14"
                       geometry="primitive: cylinder; radius: 0.5; height:0.1;"
