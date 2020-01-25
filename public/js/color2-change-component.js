@@ -8,7 +8,7 @@ AFRAME.registerComponent('color2-change-component', {
             this.el.addEventListener('click', function (evt) {
               lastIndex = (lastIndex + 1) % COLORS.length;
               this.setAttribute('material', 'color', COLORS[lastIndex]);
-              console.log('clicked: ', evt.detail.intersection.point);
+              console.log('clicked2: ', evt.detail.intersection.point);
     
     
             });
