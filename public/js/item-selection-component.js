@@ -13,14 +13,14 @@ init: function()
             //object3D = three.js(rendering engine) 3D element
           
             
-           Context_AF.el.object3D.scale.set(0.025, 0.025, 0.025);
-           //Context_AF.el.object3D.rotate.set();
+            Context_AF.el.object3D.scale.set(0.030, 0.030, 0.030);
+          
         });
 
         Context_AF.el.addEventListener('mouseleave', function(event)
         {
-            Context_AF.el.object3D.scale.set(0.015, 0.015, 0.015);
-
+           
+            Context_AF.el.object3D.scale.set(0.015, 0.015, 0.015)
         });
 
     }
