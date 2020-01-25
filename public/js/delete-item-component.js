@@ -1,5 +1,5 @@
 AFRAME.registerComponent('delete-item-component', {
-    
+  //js to delete an object   
     init : function() {
         const Context_AF = this;
 

@@ -1,5 +1,6 @@
 AFRAME.registerComponent('item-selection-component',{
 
+    //js to click and zoom in on an object 
 init: function()
     {
         console.log('init component');

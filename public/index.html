@@ -8,14 +8,19 @@
        
         <!--js components-->
         <script src= "js/create-tree-component.js"></script>
+        <script src= "js/create-flower-component.js"></script>
         <script src= "js/delete-item-component.js"></script>
         <script src= "js/color-change-component.js"></script>
+        <script src= "js/color2-change-component.js"></script>
         <script src= "js/item-selection-component.js"></script>
-        <script src="js/create-flower-component.js"></script>
-        <!--some component scripts that run with the enviroment (one is for the a-frame enviroment and the other is events based on the hovering of the mouse)-->
+        
+        
+        <!--some component scripts that run with the enviroment (one is for the a-frame enviroment and the other is events based on the hovering of the mouse and being able to move around in mobile)-->
         <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
         <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
         <script src="https://rawgit.com/Ctrl-Alt-Zen/aframe-mobile-controls/master/components/twoway-motion/twoway-motion.js"></script>
+        <script src="https://rawgit.com/Ctrl-Alt-Zen/aframe-mobile-controls/master/components/tilt-turn/tilt-turn.js"></script>
+
         
         
     </head>
@@ -40,7 +45,7 @@
             </a-assets>
           
             <!--Have the cursor parented to the camera by having pointer lock enabled so whenever the mouse is moving, the cursor is located at the center of the screen (exit by pressing the esc key)-->
-            <a-entity twoway-motion="speed: 35" camera look-controls="pointerLockEnabled: true" wasd-controls position="0 1.6 0">
+            <a-entity twoway-motion="speed: 35" tilt-turn="criticalAngle: 20" camera look-controls="pointerLockEnabled: true" wasd-controls position="0 1.6 0">
                 <a-entity cursor="fuse: true; fuseTimeout: 500"
                           position="0 0 -1"
                           geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
@@ -54,7 +59,8 @@
               
               <!--some entities-->
 
-                <!--Have the cursor hover over the flower to display text-->
+                <!--objects-->
+
                 <a-entity id="flower" 
                         cursor-listener 
                         position = "4 0.1 -4"
@@ -62,7 +68,7 @@
                         scale = "0.015 0.015 0.015"
                         event-set__enter="_event: mouseenter; _target: #flowerText; visible: true"
                         event-set__leave="_event: mouseleave; _target: #flowerText; visible: false"
-                        animation="property: rotation; dir: forward; dur: 10000; easing: easeInSine; loop: true; to: 0 360 0; startEvents: mouseleave"
+                        animation="property: rotation; to: 0 360 0; dur: 10000; easing: easeInSine; dir: forward; startEvents: mouseenter; pauseEvents: mouseleave; dur: 10000; easing: easeInSine; loop: true;"
                    
                         item-selection-component>  
                         <a-text id="flowerText" value="This is a flower" color="white" visible="false" scale= "35 35 35" position="-32 59 2.8"></a-text></a-entity>
@@ -83,11 +89,11 @@
                         shadow="cast: true"
                         event-set__enter="_event: mouseenter; _target: #daisyText; visible: true"
                         event-set__leave="_event: mouseleave; _target: #daisyText; visible: false"
-                        item-selection-component
-                        >
+                        item-selection-component>
                         <a-text id="daisyText" value="These are daisies" color="white" visible="false" scale= "35 35 35" position="-21 32 27"></a-text></a-entity>
         
             
+ 
                 <a-entity id= "bench"
                         crusor-listener
                         position = "-5.3 -0.2 -7.3"
@@ -100,15 +106,18 @@
                         crusor-listener
                         position = "-4.98 0.6 -7"
                         obj-model ="obj: #butterfly-obj"
-                        rotation = "0 90 3.2"
+                        rotation = "0 90 0"
                         scale ="0.009 0.009 0.009"
                         event-set__enter="_event: mouseenter; _target: #butterflyText; visible: true"
                         event-set__leave="_event: mouseleave; _target: #butterflyText; visible: false"
-                        color-change-component
+                        animation="property: position; from: -4.98 0.6 -7; to: -4.98 1 -7; dir: alternate; loop: true; dur: 4000; easing: linear; startEvents: mouseenter; pauseEvents: mouseleave"
+                        color2-change-component
                         item-selection-component>
                         
                         <a-text id="butterflyText" value="A butterfly" color="white" visible="false" scale= "35 35 35" position="-21 32 27"></a-text></a-entity>
                 
+                        
+                        <!-- gltf model-->
 
               <a-entity id="headphone"
                         cursor-listener 
@@ -117,8 +126,10 @@
                         rotation= "0 90 0 "
                         scale= "0.4 0.4 0.4"
                         shadow="cast:true; receive:true;"
-                        sound= "src: /assets/sounds/birdchirping.mp3; on: click; loop: true;"></a-entity>
+                        sound= "src: /assets/sounds/birdchirping.mp3; on: click; loop: true"></a-entity>
 
+
+                        <!-- buttons-->
             <a-entity id="greenbutton" 
                       class="clickable"
                       position = "3.1 0 -13"
@@ -135,6 +146,8 @@
                       sound= "src: /assets/sounds/button_pressed.mp3; on: click"
                       create-flower-component ></a-entity>
             
+
+
                 <!-- have a sign displayed to remind user to hover here to create trees-->
             <a-entity id="tree_sign" 
                       position = "3.1 1.4 -13"
@@ -142,7 +155,7 @@
                       scale = "0.5 0.5 0.5"
                       geometry="primitive: triangle"
                       material="side: double; color: yellow;"
-                      animation="property: position; from: 3.1 1.4 -13; to: 3.1 2.1 -13; dir: alternate; loop: true; dur: 2000; ease: linear">
+                      animation="property: position; from: 3.1 1.4 -13; to: 3.1 2.1 -13; dir: alternate; loop: true; dur: 2000; easing: linear">
                       <a-text id="treeText" value="Plant a tree!" rotation = "0 0 -180" color="white" scale= "3 3 3 " position="1.8 -1.2 0"></a-text></a-entity>
             
            <a-entity id="flower_sign" 
@@ -151,7 +164,7 @@
                       scale = "0.5 0.5 0.5"
                       geometry="primitive: triangle"
                       material="side: double; color: pink;"
-                      animation="property: position; from: 7.5 1.4 -10; to: 7.5 2.1 -10; dir: alternate; loop: true; dur: 2000; ease: linear">
+                      animation="property: position; from: 7.5 1.4 -10; to: 7.5 2.1 -10; dir: alternate; loop: true; dur: 2000; easing: linear">
                       <a-text id="flowerText" value="Plant some flowers!" rotation = "0 0 180" color="white" scale= "3 3 3 " position="1.8 -1.2 0"></a-text></a-entity>
             
            

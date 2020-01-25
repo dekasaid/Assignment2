@@ -1,5 +1,5 @@
 AFRAME.registerComponent('create-flower-component', {
-
+//js to create some flowers
     init: function()
     {
         console.log('init component');
@@ -40,7 +40,7 @@ AFRAME.registerComponent('create-flower-component', {
        
         itemflower.setAttribute('class', 'clickable');
         itemflower.setAttribute('obj-model', 'obj:assets/models/flower.obj');
-        itemflower.setAttribute('mtl-model', 'mtl:/assets/models/flower.mtl');
+        itemflower.setAttribute('mtl-model', 'mtl:/assets/models/flower.mtl', 'mtl: #flower-mtl');
         itemflower.setAttribute('delete-item-component', {});
 
         //random transfromations
