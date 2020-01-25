@@ -1,6 +1,6 @@
 <html>
     <head>
-        <!--https://plnkr.co/edit/k9Jc5qEG0ckEovquEZi4?p=preview-->
+       
 
         <title>Multi-Platform Interactions</title>
         <meta name="description" content="Multi-Platform Interactions">
@@ -19,8 +19,7 @@
         <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
         <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
         <script src="https://rawgit.com/Ctrl-Alt-Zen/aframe-mobile-controls/master/components/twoway-motion/twoway-motion.js"></script>
-        <script src="https://rawgit.com/Ctrl-Alt-Zen/aframe-mobile-controls/master/components/tilt-turn/tilt-turn.js"></script>
-
+  
         
         
     </head>
@@ -45,7 +44,8 @@
             </a-assets>
           
             <!--Have the cursor parented to the camera by having pointer lock enabled so whenever the mouse is moving, the cursor is located at the center of the screen (exit by pressing the esc key)-->
-            <a-entity twoway-motion="speed: 35" tilt-turn="criticalAngle: 20" camera look-controls="pointerLockEnabled: true" wasd-controls position="0 1.6 0">
+            <a-entity twoway-motion="speed: 35" camera look-controls="pointerLockEnabled: true; touchEnabled: true" wasd-controls position="0 1.6 0">
+        
                 <a-entity cursor="fuse: true; fuseTimeout: 500"
                           position="0 0 -1"
                           geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
@@ -68,7 +68,7 @@
                         scale = "0.015 0.015 0.015"
                         event-set__enter="_event: mouseenter; _target: #flowerText; visible: true"
                         event-set__leave="_event: mouseleave; _target: #flowerText; visible: false"
-                        animation="property: rotation; to: 0 360 0; dur: 10000; easing: easeInSine; dir: forward; startEvents: mouseenter; pauseEvents: mouseleave; dur: 10000; easing: easeInSine; loop: true;"
+                        animation="property: rotation; to: 0 360 0; dur: 10000; easing: easeInSine; dir: forward; startEvents: mouseenter; pauseEvents: mouseleave; dur: 10000; easing: easeInSine; loop: true"
                    
                         item-selection-component>  
                         <a-text id="flowerText" value="This is a flower" color="white" visible="false" scale= "35 35 35" position="-32 59 2.8"></a-text></a-entity>
@@ -89,6 +89,7 @@
                         shadow="cast: true"
                         event-set__enter="_event: mouseenter; _target: #daisyText; visible: true"
                         event-set__leave="_event: mouseleave; _target: #daisyText; visible: false"
+                        animation="property: rotation; to: 0 360 0; dur: 10000; easing: easeInSine; dir: forward; startEvents: mouseenter; pauseEvents: mouseleave; dur: 10000; easing: easeInSine; loop: true"
                         item-selection-component>
                         <a-text id="daisyText" value="These are daisies" color="white" visible="false" scale= "35 35 35" position="-21 32 27"></a-text></a-entity>
         
